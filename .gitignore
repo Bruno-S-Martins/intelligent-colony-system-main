@@ -1,0 +1,45 @@
+# Ambiente virtual
+
+venv/
+.env/
+.env.*
+
+# Python
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode
+
+.vscode/
+
+# Sistema operacional
+
+.DS_Store
+Thumbs.db
+
+# Logs
+
+*.log
+
+# Arquivos temporários
+
+*.tmp
+*.temp
+
+# Cache de testes
+
+.pytest_cache/
+
+# Coverage
+
+.coverage
+htmlcov/
+
+# Build
+
+dist/
+build/
+*.egg-info/
