@@ -1,16 +1,19 @@
 from modules.modulos import Colonia, Modulo, SistemaSolar, SistemaEolico, SistemaReserva
 from rules.regras import verificar_colonia
+from forecast.previsao import (previsao_energia_eolica, previsao_energia_solar,
+                                plotar_grafico_historico_eolica, plotar_grafico_historico_solar,
+                                plotar_grafico_previsao_eolica, plotar_grafico_previsao_solar)
 import matplotlib.pyplot as plt
 
 colonia = Colonia()
 
-#Menu principal junto de um do-while
 while True:
     print("===============")
     print("Menu Principal")
     print("===============")
     print("[1] - Modulos")
     print("[2] - Regras")
+    print("[3] - Previsão")
     print("[0] - Sair")
 
 #utilização de um match para reduzir o código
@@ -135,5 +138,43 @@ while True:
                     
                     case _:
                         print("Opção Inválida")
+
+        case "3":
+            while True:
+                print("===============")
+                print("MENU PREVISÃO")
+                print("===============")
+                print("1 - Previsão eólica (digitar vento)")
+                print("2 - Previsão solar (digitar radiação)")
+                print("3 - Gráfico histórico eólico")
+                print("4 - Gráfico histórico solar")
+                print("0 - Voltar")
+
+                match input("Escolha: "):
+
+                    case "0":
+                        break
+
+                    case "1":
+                        vento = float(input("Velocidade do vento (0 a 30 m/s): "))
+                        energia = previsao_energia_eolica(vento)
+                        print(f"Previsão de energia eólica: {energia:.2f} kWh")
+                        plotar_grafico_previsao_eolica(vento)
+
+                    case "2":
+                        radiacao = float(input("Radiação solar (0 a 100%): "))
+                        energia = previsao_energia_solar(radiacao)
+                        print(f"Previsão de energia solar: {energia:.2f} kWh")
+                        plotar_grafico_previsao_solar(radiacao)
+
+                    case "3":
+                        plotar_grafico_historico_eolica()
+
+                    case "4":
+                        plotar_grafico_historico_solar()
+
+                    case _:
+                        print("Opção invalida.")
+
         case _:
-            print("Opção Inválida!")
+            print("Opção inválida.")
